@@ -6,7 +6,7 @@ export default function MobileHeader({ title, onMenu, back = false }) {
   const navigate = useNavigate();
 
   return (
-    <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-line bg-white/95 px-4 backdrop-blur md:hidden">
+    <header className="sticky top-0 z-30 flex h-[52px] items-center justify-between border-b border-line bg-white/95 px-4 backdrop-blur md:hidden">
       {back ? (
         <button
           onClick={() => navigate(-1)}

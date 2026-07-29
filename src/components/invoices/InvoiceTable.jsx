@@ -1,4 +1,4 @@
-import { FiChevronDown, FiChevronUp, FiFileText } from "react-icons/fi";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import StatusBadge from "../common/StatusBadge";
 
 function SortMark() {
@@ -16,6 +16,31 @@ function HeaderLabel({ children }) {
       {children}
       <SortMark />
     </span>
+  );
+}
+
+function InvoiceDocumentIcon() {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      className="h-[13px] w-[13px]"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M4 1.75h5l3 3v9.5H4z"
+        stroke="currentColor"
+        strokeWidth="1.1"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9 1.75v3h3M6.25 8l3.5 3.5m0-3.5-3.5 3.5"
+        stroke="currentColor"
+        strokeWidth="1.1"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }
 
@@ -109,10 +134,18 @@ export default function InvoiceTable({
                 </td>
 
                 <td className="min-w-0 overflow-hidden whitespace-nowrap px-1.5 py-2 sm:px-2">
-                  <span className="block truncate font-medium text-[#8066F0]">{invoice.id}</span>
-                  {!mobile && (
-                    <FiFileText className="ml-1 inline text-[11px] text-[#9c9ca2]" />
-                  )}
+                  <div className="flex min-w-0 items-center gap-2">
+                    <span className="min-w-0 truncate font-medium text-[#8066F0]">
+                      {invoice.id}
+                    </span>
+                    <span
+                      className="flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-[5px] bg-[#f1f1f2] text-[#8e8e93]"
+                      aria-label={`Invoice document ${invoice.id}`}
+                      title={`Invoice document ${invoice.id}`}
+                    >
+                      <InvoiceDocumentIcon />
+                    </span>
+                  </div>
                 </td>
 
                 <td className="overflow-hidden px-2 py-2">

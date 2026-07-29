@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { FiChevronDown } from "react-icons/fi";
+import { FiChevronDown, FiLogOut } from "react-icons/fi";
 import Logo from "../common/Logo";
 import { navItems, bottomItems } from "./navItems";
 import { useAuth } from "../../context/AuthContext";
@@ -45,8 +45,14 @@ function NavItem({ item, rail = false, onNavigate }) {
 function PromoBanner() {
   return (
     <div className="relative mx-auto mb-4 mt-auto flex h-[252px] w-[191px] shrink-0 flex-col overflow-hidden rounded-[12px] bg-[#252525] px-6 py-4 text-white">
-      <span className="pointer-events-none absolute -right-[3px] -top-[18px] h-[78px] w-[29px] -skew-x-[16deg] bg-[#856DF3]/55" />
-      <span className="pointer-events-none absolute right-[20px] top-0 h-[62px] w-[29px] -skew-x-[16deg] bg-[#856DF3]/55" />
+      <span
+        className="pointer-events-none absolute right-[15px] top-0 h-[38px] w-[35px] bg-[#856DF3]"
+        style={{ clipPath: "polygon(28% 0, 100% 0, 72% 100%, 0 100%)" }}
+      />
+      <span
+        className="pointer-events-none absolute right-0 top-[29px] h-[38px] w-[24px] bg-[#4d456b]"
+        style={{ clipPath: "polygon(28% 0, 100% 0, 72% 100%, 0 100%)" }}
+      />
 
       <p className="relative z-10 text-[27px] font-semibold leading-[1.02] tracking-[-0.035em]">
         Loving
@@ -76,7 +82,7 @@ export default function Sidebar({ rail = false, onNavigate }) {
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    navigate("/login", { replace: true });
     onNavigate?.();
   };
 
@@ -138,6 +144,18 @@ export default function Sidebar({ rail = false, onNavigate }) {
             onNavigate={onNavigate}
           />
         ))}
+
+        <button
+          type="button"
+          onClick={handleLogout}
+          className={`group flex h-10 w-full items-center rounded-lg bg-[#ffdede] text-[12px] text-[#cf3f3f] transition hover:bg-[#ffcaca] hover:text-[#b92f2f] ${
+            rail ? "justify-center px-0" : "gap-3 px-3"
+          }`}
+          title={rail ? "Logout" : undefined}
+        >
+          <FiLogOut className="shrink-0 text-[17px]" />
+          {!rail && <span>Logout</span>}
+        </button>
       </nav>
 
       {!rail && <PromoBanner />}

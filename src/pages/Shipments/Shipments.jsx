@@ -10,9 +10,17 @@ import ShipmentTableToolbar from "../../components/shipments/ShipmentTableToolba
 import ShipmentToolbar from "../../components/shipments/ShipmentToolbar";
 import ShipmentsTable from "../../components/shipments/ShipmentsTable";
 import ViewToggle from "../../components/shipments/ViewToggle";
-import { shipmentRecords, shipmentSummary } from "../../data/shipments";
+import {
+  gridShipmentRecords,
+  shipmentRecords,
+  shipmentSummary,
+} from "../../data/shipments";
 
 const TABLE_PAGE_COUNT = 16;
+const gridStatusOverrides = {
+  SH8967432: "In Transit",
+  SH8893247: "Out for Delivery",
+};
 
 function createTableRecords() {
   return Array.from(
@@ -36,6 +44,26 @@ function createTableRecords() {
   );
 }
 
+function createGridRecords() {
+  return Array.from(
+    { length: gridShipmentRecords.length * TABLE_PAGE_COUNT },
+    (_, index) => {
+      const source = gridShipmentRecords[index % gridShipmentRecords.length];
+
+      if (index < gridShipmentRecords.length) {
+        return source;
+      }
+
+      const serial = String(index + 1).padStart(4, "0");
+      return {
+        ...source,
+        sourceId: source.id,
+        id: `${source.id.slice(0, 5)}${serial}`,
+      };
+    }
+  );
+}
+
 export default function Shipments() {
   const navigate = useNavigate();
   const [params, setParams] = useSearchParams();
@@ -45,10 +73,11 @@ export default function Shipments() {
   const [status, setStatus] = useState("All");
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(view === "grid" ? 8 : 12);
+  const [pageSize, setPageSize] = useState(view === "grid" ? 12 : 11);
   const [selected, setSelected] = useState([]);
 
   const tableRecords = useMemo(createTableRecords, []);
+  const gridRecords = useMemo(createGridRecords, []);
 
   const setView = (nextView) => {
     setViewState(nextView);
@@ -57,17 +86,19 @@ export default function Shipments() {
       { replace: true }
     );
     setPage(1);
-    setPageSize(nextView === "grid" ? 8 : 12);
+    setPageSize(nextView === "grid" ? 12 : 11);
   };
 
   useEffect(() => {
     setPage(1);
   }, [status, query]);
 
-  const sourceRecords = view === "table" ? tableRecords : shipmentRecords;
+  const sourceRecords = view === "table" ? tableRecords : gridRecords;
 
   const filtered = useMemo(() => {
     return sourceRecords.filter((item) => {
+      const sourceId = item.sourceId || item.id;
+      const gridStatus = gridStatusOverrides[sourceId] || item.status;
       const matchesQuery = [
         item.id,
         item.company,
@@ -81,14 +112,16 @@ export default function Shipments() {
 
       const matchesStatus =
         status === "All" ||
-        (status === "Completed" && item.status === "Delivered") ||
+        (view === "grid" && gridStatus === status) ||
+        (status === "Completed" && item.progress === 100) ||
         (status === "Delivery" &&
-          ["In Transit", "Out for Delivery"].includes(item.status)) ||
+          item.progress < 100 &&
+          item.status !== "Processing") ||
         (status === "Pending" && item.status === "Processing");
 
       return matchesQuery && matchesStatus;
     });
-  }, [query, sourceRecords, status]);
+  }, [query, sourceRecords, status, view]);
 
   const pages = Math.max(1, Math.ceil(filtered.length / pageSize));
   const safePage = Math.min(page, pages);
@@ -123,7 +156,13 @@ export default function Shipments() {
         </div>
       )}
 
-      <section className="overflow-hidden rounded-[12px] border border-[#e8e8eb] bg-white shadow-card">
+      <section
+        className={
+          view === "table"
+            ? "overflow-hidden rounded-[12px] border border-[#e8e8eb] bg-white shadow-card"
+            : "bg-transparent"
+        }
+      >
         {view === "table" ? (
           <ShipmentTableToolbar
             status={status}
@@ -150,7 +189,7 @@ export default function Shipments() {
             setSelected={setSelected}
           />
         ) : (
-          <div className="grid gap-3 p-3 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-3 grid gap-4 sm:mt-0 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-5">
             {pageRows.map((item) => (
               <ShipmentCard key={item.id} item={item} />
             ))}
@@ -170,7 +209,7 @@ export default function Shipments() {
             setPage={setPage}
             pageSize={pageSize}
             setPageSize={setPageSize}
-            total={1240}
+            total={520}
           />
         ) : (
           <Pagination

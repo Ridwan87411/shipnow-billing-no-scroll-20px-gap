@@ -109,7 +109,7 @@ export default function Invoices() {
       </section>
 
       {/* Desktop: list and detail side by side */}
-      <section className="mt-4 hidden min-h-[735px] grid-cols-[minmax(0,1.42fr)_minmax(360px,1fr)] gap-4 xl:grid">
+      <section className="mt-4 hidden h-[734px] grid-cols-[minmax(0,1fr)_479px] gap-4 xl:grid">
         <div className="overflow-hidden rounded-[11px] border border-[#ececef] bg-white">
           <div className="flex min-h-[58px] items-center justify-between gap-3 px-4">
             <h2 className="text-[14px] font-medium text-[#36363a]">Invoices</h2>

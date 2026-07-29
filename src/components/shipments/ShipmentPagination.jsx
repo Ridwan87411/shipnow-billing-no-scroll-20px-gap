@@ -8,7 +8,12 @@ export default function ShipmentPagination({
   pages = 16,
   total = 1240,
 }) {
-  const pageItems = [1, 2, 3];
+  const leadingPages = Array.from(
+    { length: Math.min(3, pages) },
+    (_, index) => index + 1
+  );
+  const showEllipsis = pages > 4;
+  const showLastPage = pages > 3;
 
   return (
     <div className="flex h-[52px] items-center justify-center border-t border-[#dedee2] px-3 text-[10px] text-[#77777d] md:justify-between md:px-4">
@@ -24,7 +29,7 @@ export default function ShipmentPagination({
           aria-label="Rows per page"
         >
           <option value={8}>8</option>
-          <option value={12}>12</option>
+          <option value={11}>11</option>
           <option value={16}>16</option>
         </select>
         <span className="text-[#a0a0a6]">of {total.toLocaleString()} results</span>
@@ -41,7 +46,7 @@ export default function ShipmentPagination({
           <FiChevronLeft size={13} />
         </button>
 
-        {pageItems.map((item) => (
+        {leadingPages.map((item) => (
           <button
             key={item}
             type="button"
@@ -56,19 +61,23 @@ export default function ShipmentPagination({
           </button>
         ))}
 
-        <span className="px-1 text-[#898990]">...</span>
+        {showEllipsis && (
+          <span className="px-1 text-[#898990]">...</span>
+        )}
 
-        <button
-          type="button"
-          onClick={() => setPage(pages)}
-          className={`h-7 min-w-7 rounded-[7px] px-2 text-[9px] ${
-            page === pages
-              ? "bg-brand-600 text-white"
-              : "text-[#55555b]"
-          }`}
-        >
-          {pages}
-        </button>
+        {showLastPage && (
+          <button
+            type="button"
+            onClick={() => setPage(pages)}
+            className={`h-7 min-w-7 rounded-[7px] px-2 text-[9px] ${
+              page === pages
+                ? "bg-brand-600 text-white"
+                : "text-[#55555b]"
+            }`}
+          >
+            {pages}
+          </button>
+        )}
 
         <button
           type="button"

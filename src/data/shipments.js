@@ -53,7 +53,7 @@ export const shipmentRecords = [
     eta: "Mar 25, 2035",
     progress: 40,
     status: "Processing",
-    mode: "Sports & Outdoors",
+    mode: "Rail Freight",
   },
   {
     id: "SH9457830",
@@ -123,7 +123,7 @@ export const shipmentRecords = [
     eta: "Mar 24, 2035",
     progress: 30,
     status: "Processing",
-    mode: "Road Freight",
+    mode: "Rail Freight",
   },
   {
     id: "SH8881190",
@@ -153,6 +153,10 @@ export const shipmentRecords = [
     status: "In Transit",
     mode: "Air Freight",
   },
+];
+
+export const gridShipmentRecords = [
+  ...shipmentRecords.slice(0, 9),
   {
     id: "SH9113471",
     company: "QuickParts",
@@ -167,6 +171,7 @@ export const shipmentRecords = [
     status: "In Transit",
     mode: "Road Freight",
   },
+  ...shipmentRecords.slice(9),
 ];
 
 export const shipmentSummary = [

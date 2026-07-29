@@ -1,10 +1,11 @@
 import { useMemo, useState } from "react";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import {
-  FiChevronDown,
-  FiChevronUp,
-  FiClock,
-  FiTruck,
-} from "react-icons/fi";
+  PiAirplaneTilt,
+  PiBoat,
+  PiTrain,
+  PiTruck,
+} from "react-icons/pi";
 
 const companyLogos = {
   "TechGear Inc.": "/assets/invoices/techgear.png",
@@ -17,6 +18,7 @@ const companyLogos = {
   ModaWear: "/assets/invoices/modawear.png",
   "SunCore Panels": "/assets/invoices/suncore.png",
   VitaFresh: "/assets/invoices/vitafresh.png",
+  StyleDepot: "/assets/invoices/styledepot.svg",
 };
 
 const scheduleById = {
@@ -31,7 +33,6 @@ const scheduleById = {
   SH9018723: ["09:30 AM", "01:30 PM"],
   SH8881190: ["06:00 AM", "10:00 AM"],
   SH8776103: ["10:15 AM", "03:30 PM"],
-  SH9113471: ["04:40 PM", "11:00 AM"],
 };
 
 const columnWidths = {
@@ -136,7 +137,7 @@ function ShipmentStatus({ status, progress }) {
   const pending = value === "Pending";
 
   return (
-    <span className="inline-flex items-center whitespace-nowrap rounded-full bg-[#f4f4f5] px-[7px] py-[3px] text-[9px] font-medium leading-none text-[#45454a]">
+    <span className="inline-flex h-[17px] items-center whitespace-nowrap rounded-full bg-[#f4f4f5] px-[7px] text-[8px] font-medium text-[#45454a]">
       <span
         className={`mr-1.5 h-[6px] w-[6px] rounded-full ${
           completed
@@ -149,6 +150,24 @@ function ShipmentStatus({ status, progress }) {
       {value}
     </span>
   );
+}
+
+function FreightModeIcon({ mode }) {
+  const iconClass = "h-[12px] w-[12px] shrink-0";
+
+  if (mode === "Air Freight") {
+    return <PiAirplaneTilt className={iconClass} aria-hidden="true" />;
+  }
+
+  if (mode === "Ocean Freight") {
+    return <PiBoat className={iconClass} aria-hidden="true" />;
+  }
+
+  if (mode === "Rail Freight") {
+    return <PiTrain className={iconClass} aria-hidden="true" />;
+  }
+
+  return <PiTruck className={iconClass} aria-hidden="true" />;
 }
 
 function ShipmentDataTable({
@@ -186,13 +205,9 @@ function ShipmentDataTable({
       return (
         <td key={column} className="px-2 align-middle">
           <p className="truncate font-semibold text-brand-700">#{row.id}</p>
-          <p className="mt-1 flex items-center gap-1 truncate text-[7px] text-[#9a9aa0]">
-            {row.mode === "Air Freight" ? (
-              <FiClock className="shrink-0" />
-            ) : (
-              <FiTruck className="shrink-0" />
-            )}
-            {row.mode}
+          <p className="mt-[5px] flex items-center gap-[4px] truncate text-[7px] text-[#8f8f94]">
+            <FreightModeIcon mode={row.mode} />
+            <span className="truncate">{row.mode}</span>
           </p>
         </td>
       );
@@ -295,7 +310,7 @@ function ShipmentDataTable({
   };
 
   return (
-    <table className="w-full min-w-[1020px] table-fixed text-left text-[9px] text-[#3f3f44]">
+    <table className="w-full min-w-[1020px] table-fixed text-left text-[9px] text-[#444449]">
       <colgroup>
         <col style={{ width: columnWidths.select }} />
         {columns.map((column) => (
@@ -307,7 +322,7 @@ function ShipmentDataTable({
       </colgroup>
 
       <thead>
-        <tr className="h-[40px] border-b border-[#dedee2] text-[#4e4e54]">
+        <tr className="h-[38px] border-b border-[#e5e5e8] text-[#55555a]">
           <th className="px-2">
             <input
               type="checkbox"

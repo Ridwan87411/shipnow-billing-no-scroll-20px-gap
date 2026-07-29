@@ -17,7 +17,7 @@ export default function ShipmentTableToolbar({
   onAdd,
 }) {
   return (
-    <div className="px-3 py-3 md:px-4 md:py-4">
+    <div className="px-3 py-3 md:px-4 md:py-[15px]">
       <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <div className="order-2 flex w-full rounded-[7px] bg-[#f0f0f1] md:order-1 md:w-auto">
           {statuses.map((item) => (
