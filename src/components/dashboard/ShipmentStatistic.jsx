@@ -37,7 +37,9 @@ const periods = [
   { label: "Last 8 Months", count: 8 },
 ];
 
-export default function ShipmentStatistic() {
+export default function ShipmentStatistic({ gradientId = "default" }) {
+  const grayGradientId = `shipmentGrayArea-${gradientId}`;
+  const selectedGradientId = `shipmentSelectedArea-${gradientId}`;
   const [activeIndex, setActiveIndex] = useState(4);
   const [period, setPeriod] = useState(periods[2]);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -157,12 +159,12 @@ export default function ShipmentStatistic() {
           preserveAspectRatio="none"
         >
           <defs>
-            <linearGradient id="shipmentGrayArea" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id={grayGradientId} x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#9f9fa4" stopOpacity="0.78" />
               <stop offset="48%" stopColor="#d7d7da" stopOpacity="0.5" />
               <stop offset="100%" stopColor="#f5f5f6" stopOpacity="0.18" />
             </linearGradient>
-            <linearGradient id="shipmentMayArea" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id={selectedGradientId} x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#8066F0" stopOpacity="1" />
               <stop offset="100%" stopColor="#e8e3ff" stopOpacity="0.38" />
             </linearGradient>
@@ -200,7 +202,7 @@ export default function ShipmentStatistic() {
               key={index}
               onMouseEnter={() => setActiveIndex(index)}
               onClick={() => setActiveIndex(index)}
-              className="cursor-pointer"
+              className="cursor-pointer focus:outline-none"
               role="button"
               tabIndex="0"
               aria-label={`${months[index].label}: ${bar.value.toLocaleString()} shipments`}
@@ -215,8 +217,8 @@ export default function ShipmentStatistic() {
                 height={115 - bar.y}
                 fill={
                   highlighted
-                    ? "url(#shipmentMayArea)"
-                    : "url(#shipmentGrayArea)"
+                    ? `url(#${selectedGradientId})`
+                    : `url(#${grayGradientId})`
                 }
               />
               <line

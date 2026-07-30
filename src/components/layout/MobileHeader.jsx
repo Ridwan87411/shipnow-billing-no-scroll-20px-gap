@@ -9,7 +9,7 @@ export default function MobileHeader({ title, onMenu, back = false }) {
   return (
     <header
       className={`sticky top-0 z-30 flex items-center justify-between border-b border-line bg-white/95 px-4 backdrop-blur md:hidden ${
-        isDashboard ? "relative h-[58px] w-[412px] min-w-[412px] max-w-[412px]" : "h-[52px] w-full"
+        isDashboard ? "h-[58px] w-full" : "h-[52px] w-full"
       }`}
     >
       {back ? (

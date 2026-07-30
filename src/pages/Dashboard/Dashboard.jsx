@@ -69,7 +69,7 @@ export default function Dashboard() {
           </div>
         ))}
         <div className="md:hidden">
-          <ShipmentStatistic />
+          <ShipmentStatistic gradientId="mobile" />
         </div>
         <div className="md:hidden">
           <ProfitSummary />
@@ -79,7 +79,7 @@ export default function Dashboard() {
         </div>
 
         <div className="hidden md:order-1 md:col-span-3 md:block xl:order-none xl:col-span-1">
-          <ShipmentStatistic />
+          <ShipmentStatistic gradientId="desktop" />
         </div>
         <div className="hidden md:order-1 md:col-span-3 md:block xl:order-none xl:col-span-2">
           <ProfitSummary />
