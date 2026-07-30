@@ -54,7 +54,7 @@ export default function InvoiceTable({
   return (
     <div className={`w-full overflow-hidden ${faded ? "opacity-45" : ""}`}>
       <table
-        className={`w-full table-fixed border-collapse text-left text-[9px] text-[#55555b] ${
+        className={`w-full table-fixed border-collapse text-left text-[12px] text-[#55555b] ${
           mobile ? "" : ""
         }`}
       >
@@ -161,7 +161,7 @@ export default function InvoiceTable({
                         {invoice.company}
                       </p>
                       {mobile && (
-                        <p className="truncate text-[7.5px] text-[#99999f]">
+                        <p className="truncate text-[10px] text-[#99999f]">
                           {invoice.shippingId}
                         </p>
                       )}

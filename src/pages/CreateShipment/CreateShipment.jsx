@@ -42,11 +42,11 @@ const INITIAL_VALUES = {
 };
 
 const FIELD_CLASS =
-  "h-[42px] w-full rounded-[7px] border border-transparent bg-white px-3 text-[10px] text-[#444449] placeholder:text-[#a7a7ad] transition focus:border-brand-400";
+  "h-[42px] w-full rounded-[7px] border border-transparent bg-white px-3 text-[13px] text-[#444449] placeholder:text-[#a7a7ad] transition focus:border-brand-400";
 
 function FieldLabel({ children }) {
   return (
-    <span className="mb-1.5 block text-[9px] font-normal leading-none text-[#77777d]">
+    <span className="mb-2 block text-[12px] font-medium leading-none text-[#66666c]">
       {children}
     </span>
   );
@@ -54,7 +54,7 @@ function FieldLabel({ children }) {
 
 function ErrorText({ children }) {
   return (
-    <p className="mt-1.5 text-[8px] font-medium leading-none text-brand-600">
+    <p className="mt-1.5 text-[11px] font-medium leading-none text-brand-600">
       {children}
     </p>
   );
@@ -65,7 +65,7 @@ function PhoneInput({ value, onChange }) {
     <div className="flex h-[42px] overflow-hidden rounded-[7px] bg-white">
       <button
         type="button"
-        className="flex shrink-0 items-center gap-1 border-r border-[#ececef] px-2 text-[10px] text-[#55555a]"
+        className="flex shrink-0 items-center gap-1 border-r border-[#ececef] px-2 text-[13px] text-[#55555a]"
         aria-label="Country code"
       >
         <span className="text-[15px] leading-none"><img src="/assets/Country.png" alt="United States" /></span>
@@ -75,7 +75,7 @@ function PhoneInput({ value, onChange }) {
       <input
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="min-w-0 flex-1 bg-transparent px-3 text-[10px] text-[#444449]"
+        className="min-w-0 flex-1 bg-transparent px-3 text-[13px] text-[#444449]"
         aria-label="Phone number"
       />
     </div>
@@ -84,7 +84,7 @@ function PhoneInput({ value, onChange }) {
 
 function CheckOption({ checked, onChange, label, className = "" }) {
   return (
-    <label className={`flex cursor-pointer items-center gap-1.5 text-[9px] text-[#57575c] ${className}`}>
+    <label className={`flex cursor-pointer items-center gap-2 text-[12px] text-[#57575c] ${className}`}>
       <input
         type="checkbox"
         checked={checked}
@@ -98,7 +98,7 @@ function CheckOption({ checked, onChange, label, className = "" }) {
 
 function FreightRadio({ value, selected, setSelected }) {
   return (
-    <label className="flex cursor-pointer items-center gap-1.5 text-[9px] text-[#57575c]">
+    <label className="flex cursor-pointer items-center gap-2 text-[12px] text-[#57575c]">
       <input
         type="radio"
         name="freightType"
@@ -215,7 +215,7 @@ export default function CreateShipment() {
           </h1>
         </button>
 
-        <p className="ml-7 mt-1.5 text-[9px]">
+        <p className="ml-7 mt-1.5 text-[11px]">
           <span className="text-brand-600">Dashboard</span>
           <span className="mx-1 text-[#a4a4aa]">/</span>
           <span className="text-brand-600">Shipments</span>
@@ -226,10 +226,10 @@ export default function CreateShipment() {
 
       <form
         onSubmit={submit}
-        className="overflow-hidden rounded-[12px] border border-[#e8e8eb] bg-white shadow-card"
+        className="overflow-hidden rounded-[12px] border border-[#e8e8eb] bg-white shadow-card [&_button]:text-[13px] [&_input]:!text-[13px] [&_select]:!text-[13px] [&_textarea]:!text-[13px]"
       >
         <div className="px-5 pb-4 pt-5 sm:px-6 lg:px-7">
-          <h2 className="text-[14px] font-medium text-[#36363a]">
+          <h2 className="text-[19px] font-semibold text-[#36363a]">
             Shipment Form
           </h2>
         </div>
@@ -239,7 +239,7 @@ export default function CreateShipment() {
           <section className="rounded-[11px] bg-[#f5f5f6] p-4 sm:p-5">
             <div className="grid md:grid-cols-2">
               <div className="pb-5 md:border-r md:border-[#dedee2] md:pb-0 md:pr-5">
-                <h3 className="mb-5 text-[11px] font-semibold text-[#36363b]">
+                <h3 className="mb-5 text-[15px] font-semibold text-[#36363b]">
                   Sender Info
                 </h3>
 
@@ -296,7 +296,7 @@ export default function CreateShipment() {
               </div>
 
               <div className="border-t border-[#dedee2] pt-5 md:border-t-0 md:pl-5 md:pt-0">
-                <h3 className="mb-5 text-[11px] font-semibold text-[#36363b]">
+                <h3 className="mb-5 text-[15px] font-semibold text-[#36363b]">
                   Recipient Info
                 </h3>
 
@@ -365,7 +365,7 @@ export default function CreateShipment() {
           {/* Desktop: package + shipping side-by-side. Tablet/mobile: stack. */}
           <div className="mt-5 grid xl:grid-cols-[0.38fr_0.62fr]">
             <section className="border-b border-[#dedee2] pb-6 xl:border-b-0 xl:border-r xl:pb-0 xl:pr-6">
-              <h3 className="mb-5 text-[12px] font-semibold text-[#36363b]">
+              <h3 className="mb-5 text-[15px] font-semibold text-[#36363b]">
                 Package Details
               </h3>
 
@@ -446,11 +446,11 @@ export default function CreateShipment() {
                             placeholder={placeholder}
                             className="h-[42px] w-full rounded-[7px] border border-transparent bg-[#f5f5f6] px-3 pr-8 text-[10px] placeholder:text-[#a4a4aa]"
                           />
-                          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[8px] text-[#a4a4aa]">
+                          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[11px] text-[#a4a4aa]">
                             cm
                           </span>
                         </div>
-                        <span className="mt-1.5 block text-[8px] text-[#99999f]">
+                        <span className="mt-1.5 block text-[11px] text-[#99999f]">
                           {caption}
                         </span>
                       </label>
@@ -461,7 +461,7 @@ export default function CreateShipment() {
             </section>
 
             <section className="pt-6 xl:pl-6 xl:pt-0">
-              <h3 className="mb-5 text-[12px] font-semibold text-[#36363b]">
+              <h3 className="mb-5 text-[15px] font-semibold text-[#36363b]">
                 Shipping Details
               </h3>
 
@@ -532,7 +532,7 @@ export default function CreateShipment() {
                     readOnly
                     className="h-[42px] w-full rounded-[7px] border border-transparent bg-[#eeeeef] px-3 text-[10px] text-[#a2a2a8]"
                   />
-                  <span className="mt-1.5 block text-[8px] text-[#99999f]">
+                  <span className="mt-1.5 block text-[11px] text-[#99999f]">
                     Auto-generated
                   </span>
                 </label>
@@ -606,7 +606,7 @@ export default function CreateShipment() {
                           update("trackingUpdates", checked)
                         }
                       />
-                      <span className="text-[9px] text-[#57575c]">
+                      <span className="text-[12px] text-[#57575c]">
                         Notify Recipient via Email/SMS
                       </span>
                     </div>

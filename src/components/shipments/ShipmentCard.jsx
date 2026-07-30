@@ -98,14 +98,14 @@ export default function ShipmentCard({ item }) {
   const status = details.status || item.status;
 
   return (
-    <article className="h-[320px] min-w-0 rounded-[10px] bg-white p-[16px] shadow-card">
+    <article className="h-[350px] min-w-0 rounded-[10px] bg-white p-[16px] shadow-card">
       <div className="flex h-[57px] items-start justify-between border-b border-[#e8e8eb]">
         <div>
-          <p className="text-[11px] font-semibold leading-none text-[#343439]">
+          <p className="text-[14px] font-semibold leading-none text-[#343439]">
             #{item.id}
           </p>
           <span
-            className={`mt-[7px] inline-flex h-[16px] items-center rounded-full px-[7px] text-[8px] font-medium ${
+            className={`mt-[7px] inline-flex h-[20px] items-center rounded-full px-[8px] text-[10px] font-medium ${
               statusStyles[status] || statusStyles["In Transit"]
             }`}
           >
@@ -124,26 +124,26 @@ export default function ShipmentCard({ item }) {
           className="h-[31px] w-[31px] shrink-0 object-contain"
         />
         <div className="min-w-0">
-          <p className="truncate text-[10px] font-medium text-[#303034]">
+          <p className="truncate text-[13px] font-medium text-[#303034]">
             {item.company}
           </p>
-          <p className="mt-[3px] truncate text-[8px] text-[#99999f]">
+          <p className="mt-[3px] truncate text-[11px] text-[#99999f]">
             {item.category}
           </p>
         </div>
       </div>
 
-      <div className="relative h-[100px] rounded-[8px] bg-[#f5f5f6] px-[11px] py-[12px]">
+      <div className="relative h-[116px] rounded-[8px] bg-[#f5f5f6] px-[11px] py-[12px]">
         <span className="absolute bottom-[25px] left-[15px] top-[18px] w-px bg-[#ddd7ff]" />
 
         <div className="relative grid grid-cols-[10px_1fr_minmax(0,1.5fr)] items-start gap-[5px]">
           <span className="mt-[2px] h-[8px] w-[8px] rounded-full bg-[#8b70ff] ring-[3px] ring-[#e9e4ff]" />
-          <span className="text-[8px] text-[#99999f]">Origin</span>
+          <span className="text-[10px] text-[#99999f]">Origin</span>
           <div className="min-w-0 text-right">
-            <p className="truncate text-[9px] font-medium text-[#333338]">
+            <p className="truncate text-[12px] font-medium text-[#333338]">
               {origin}
             </p>
-            <p className="mt-[6px] truncate text-[7px] text-[#99999f]">
+            <p className="mt-[6px] truncate text-[10px] text-[#99999f]">
               {details.departure || `${item.date} – 10:00 AM`}
             </p>
           </div>
@@ -151,19 +151,19 @@ export default function ShipmentCard({ item }) {
 
         <div className="relative mt-[14px] grid grid-cols-[10px_1fr_minmax(0,1.5fr)] items-start gap-[5px]">
           <span className="mt-[2px] h-[8px] w-[8px] rounded-full bg-[#8b70ff] ring-[3px] ring-[#e9e4ff]" />
-          <span className="text-[8px] text-[#99999f]">Destination</span>
+          <span className="text-[10px] text-[#99999f]">Destination</span>
           <div className="min-w-0 text-right">
-            <p className="truncate text-[9px] font-medium text-[#333338]">
+            <p className="truncate text-[12px] font-medium text-[#333338]">
               {destination}
             </p>
-            <p className="mt-[6px] truncate text-[7px] text-[#99999f]">
+            <p className="mt-[6px] truncate text-[10px] text-[#99999f]">
               {details.arrival || `${item.eta} – 03:00 PM`}
             </p>
           </div>
         </div>
       </div>
 
-      <div className="mt-[17px] flex items-center justify-between text-[8px] text-[#929298]">
+      <div className="mt-[17px] flex items-center justify-between text-[11px] text-[#929298]">
         <span>
           Progress{" "}
           <b className="ml-[2px] font-semibold text-[#35353a]">{progress}%</b>

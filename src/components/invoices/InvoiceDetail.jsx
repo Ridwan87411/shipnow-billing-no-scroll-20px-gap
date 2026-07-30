@@ -106,7 +106,7 @@ export default function InvoiceDetail({ invoice, mobile = false }) {
         <div className="mt-3 overflow-x-auto rounded-[7px] border border-[#dedee2] scrollbar-thin">
           <table
             className={`w-full table-fixed text-left text-[#4e4e53] ${
-              mobile ? "min-w-0 text-[10px]" : "min-w-[360px] text-[11px]"
+              mobile ? "min-w-0 text-[12px]" : "min-w-[360px] text-[13px]"
             }`}
           >
             <colgroup>
@@ -116,7 +116,7 @@ export default function InvoiceDetail({ invoice, mobile = false }) {
               {!mobile && <col className="w-[10%]" />}
               <col className={mobile ? "w-[22%]" : "w-[22%]"} />
             </colgroup>
-            <thead className="h-[34px] bg-[#f5f5f6] text-[10px] text-[#4f4f55]">
+            <thead className="h-[38px] bg-[#f5f5f6] text-[12px] text-[#4f4f55]">
               <tr>
                 <th className="px-2 font-medium">
                   <DetailHeader>Description</DetailHeader>
@@ -188,7 +188,7 @@ export default function InvoiceDetail({ invoice, mobile = false }) {
           </table>
 
           <div
-            className={`ml-auto px-2 pb-1 text-[11px] ${
+            className={`ml-auto px-2 pb-1 text-[13px] ${
               mobile ? "w-[55%] min-w-0" : "w-[66%] min-w-[210px]"
             }`}
           >

@@ -137,7 +137,7 @@ function ShipmentStatus({ status, progress }) {
   const pending = value === "Pending";
 
   return (
-    <span className="inline-flex h-[17px] items-center whitespace-nowrap rounded-full bg-[#f4f4f5] px-[7px] text-[8px] font-medium text-[#45454a]">
+    <span className="inline-flex h-[22px] items-center whitespace-nowrap rounded-full bg-[#f4f4f5] px-[9px] text-[10px] font-medium text-[#45454a]">
       <span
         className={`mr-1.5 h-[6px] w-[6px] rounded-full ${
           completed
@@ -205,7 +205,7 @@ function ShipmentDataTable({
       return (
         <td key={column} className="px-2 align-middle">
           <p className="truncate font-semibold text-brand-700">#{row.id}</p>
-          <p className="mt-[5px] flex items-center gap-[4px] truncate text-[7px] text-[#8f8f94]">
+          <p className="mt-[5px] flex items-center gap-[4px] truncate text-[10px] text-[#8f8f94]">
             <FreightModeIcon mode={row.mode} />
             <span className="truncate">{row.mode}</span>
           </p>
@@ -222,7 +222,7 @@ function ShipmentDataTable({
               <p className="truncate font-medium text-[#303034]">
                 {row.company}
               </p>
-              <p className="mt-1 truncate text-[7px] text-[#99999f]">
+              <p className="mt-1 truncate text-[10px] text-[#99999f]">
                 {row.category}
               </p>
             </div>
@@ -294,7 +294,7 @@ function ShipmentDataTable({
                 style={{ width: `${row.progress}%` }}
               />
             </div>
-            <span className="w-7 text-right text-[8px]">
+            <span className="w-9 text-right text-[11px]">
               {row.progress}%
             </span>
           </div>
@@ -310,7 +310,7 @@ function ShipmentDataTable({
   };
 
   return (
-    <table className="w-full min-w-[1020px] table-fixed text-left text-[9px] text-[#444449]">
+    <table className="w-full min-w-[1020px] table-fixed text-left text-[12px] text-[#444449]">
       <colgroup>
         <col style={{ width: columnWidths.select }} />
         {columns.map((column) => (
@@ -322,7 +322,7 @@ function ShipmentDataTable({
       </colgroup>
 
       <thead>
-        <tr className="h-[38px] border-b border-[#e5e5e8] text-[#55555a]">
+        <tr className="h-[44px] border-b border-[#e5e5e8] text-[#55555a]">
           <th className="px-2">
             <input
               type="checkbox"
@@ -343,7 +343,7 @@ function ShipmentDataTable({
         {rows.map((row) => (
           <tr
             key={row.id}
-            className="h-[54px] border-b border-[#dedee2] last:border-b-0 hover:bg-[#fcfbff]"
+            className="h-[64px] border-b border-[#dedee2] last:border-b-0 hover:bg-[#fcfbff]"
           >
             <td className="px-2 align-middle">
               <input
