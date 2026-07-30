@@ -1,9 +1,13 @@
 # ShipNow — Logistics Management Dashboard
 
+# ShipNow — Logistics Management Dashboard
+
 ## Demo Login Credentials
 
 > **Email:** `sadib@shipnow.com`  
-> **Password:** `1234`
+> **Password:** `1234`  
+> **Live Website:** [shipnow-ridwan.netlify.app](https://shipnow-ridwan.netlify.app)
+
 
 These credentials are for demonstration purposes only.
 
