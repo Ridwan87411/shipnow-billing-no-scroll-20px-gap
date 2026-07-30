@@ -1,14 +1,19 @@
+import { lazy, Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 import AppShell from "./components/layout/AppShell";
-import Login from "./pages/Login/Login";
-import Dashboard from "./pages/Dashboard/Dashboard";
-import Shipments from "./pages/Shipments/Shipments";
-import CreateShipment from "./pages/CreateShipment/CreateShipment";
-import Invoices from "./pages/Invoices/Invoices";
-import Warehouse from "./pages/Warehouse/Warehouse";
-import Calendar from "./pages/Calendar/Calendar";
-import Placeholder from "./pages/Placeholder/Placeholder";
+import PageSkeleton from "./components/common/PageSkeleton";
+
+const Login = lazy(() => import("./pages/Login/Login"));
+const Dashboard = lazy(() => import("./pages/Dashboard/Dashboard"));
+const Shipments = lazy(() => import("./pages/Shipments/Shipments"));
+const CreateShipment = lazy(() => import("./pages/CreateShipment/CreateShipment"));
+const Invoices = lazy(() => import("./pages/Invoices/Invoices"));
+const Warehouse = lazy(() => import("./pages/Warehouse/Warehouse"));
+const Calendar = lazy(() => import("./pages/Calendar/Calendar"));
+const Drivers = lazy(() => import("./pages/Drivers/Drivers"));
+const Fleets = lazy(() => import("./pages/Fleets/Fleets"));
+const Placeholder = lazy(() => import("./pages/Placeholder/Placeholder"));
 
 function ProtectedLayout() {
   const { authenticated } = useAuth();
@@ -19,7 +24,8 @@ export default function App() {
   const { authenticated } = useAuth();
 
   return (
-    <Routes>
+    <Suspense fallback={<PageSkeleton fullScreen />}>
+      <Routes>
       <Route
         path="/login"
         element={authenticated ? <Navigate to="/dashboard" replace /> : <Login />}
@@ -35,8 +41,8 @@ export default function App() {
         <Route path="/analytics" element={<Placeholder />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/tracking" element={<Placeholder />} />
-        <Route path="/fleets" element={<Placeholder />} />
-        <Route path="/drivers" element={<Placeholder />} />
+        <Route path="/fleets" element={<Fleets />} />
+        <Route path="/drivers" element={<Drivers />} />
         <Route path="/message" element={<Placeholder />} />
         <Route path="/notification" element={<Placeholder />} />
         <Route path="/settings" element={<Placeholder />} />
@@ -44,6 +50,7 @@ export default function App() {
 
       <Route path="/" element={<Navigate to={authenticated ? "/dashboard" : "/login"} replace />} />
       <Route path="*" element={<Navigate to={authenticated ? "/dashboard" : "/login"} replace />} />
-    </Routes>
+      </Routes>
+    </Suspense>
   );
 }

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import MobileHeader from "./MobileHeader";
 import Footer from "./Footer";
+import PageSkeleton from "../common/PageSkeleton";
 
 const titleForPath = (pathname) => {
   if (pathname.startsWith("/shipments/new")) return "New Shipment";
@@ -47,7 +48,9 @@ export default function AppShell() {
           back={location.pathname.startsWith("/shipments/new")}
         />
         <div className="w-full px-3 pb-3 pt-4 sm:px-4 md:px-5 lg:px-5 lg:pt-5">
-          <Outlet />
+          <Suspense fallback={<PageSkeleton />}>
+            <Outlet />
+          </Suspense>
           <div className={isDashboard ? "-mx-3 w-[412px] min-w-[412px] max-w-[412px] md:mx-0 md:w-auto md:min-w-0 md:max-w-none" : ""}>
             <Footer />
           </div>
