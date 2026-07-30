@@ -13,6 +13,8 @@ const Warehouse = lazy(() => import("./pages/Warehouse/Warehouse"));
 const Calendar = lazy(() => import("./pages/Calendar/Calendar"));
 const Drivers = lazy(() => import("./pages/Drivers/Drivers"));
 const Fleets = lazy(() => import("./pages/Fleets/Fleets"));
+const Tracking = lazy(() => import("./pages/Tracking/Tracking"));
+const Analytics = lazy(() => import("./pages/Analytics/Analytics"));
 const Placeholder = lazy(() => import("./pages/Placeholder/Placeholder"));
 
 function ProtectedLayout() {
@@ -38,9 +40,9 @@ export default function App() {
         <Route path="/invoices" element={<Invoices />} />
         <Route path="/warehouse" element={<Warehouse />} />
 
-        <Route path="/analytics" element={<Placeholder />} />
+        <Route path="/analytics" element={<Analytics />} />
         <Route path="/calendar" element={<Calendar />} />
-        <Route path="/tracking" element={<Placeholder />} />
+        <Route path="/tracking" element={<Tracking />} />
         <Route path="/fleets" element={<Fleets />} />
         <Route path="/drivers" element={<Drivers />} />
         <Route path="/message" element={<Placeholder />} />

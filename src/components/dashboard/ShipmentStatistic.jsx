@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { FiArrowUpRight, FiChevronDown } from "react-icons/fi";
 
 const months = [
@@ -6,7 +7,7 @@ const months = [
   { label: "Mar", x: 118.25 },
   { label: "Apr", x: 156.75 },
   { label: "May", x: 195.25 },
-  { label: "Jan", x: 233.75 },
+  { label: "Jun", x: 233.75 },
   { label: "Jul", x: 272.25 },
   { label: "Aug", x: 310.75 },
 ];
@@ -20,19 +21,35 @@ const ticks = [
 ];
 
 const chartBars = [
-  { x: 22, y: 83 },
-  { x: 60.5, y: 68 },
-  { x: 99, y: 91 },
-  { x: 137.5, y: 71 },
-  { x: 176, y: 47, highlighted: true },
-  { x: 214.5, y: 55 },
-  { x: 253, y: 35 },
-  { x: 291.5, y: 19 },
+  { x: 22, y: 83, value: 1450 },
+  { x: 60.5, y: 68, value: 1850 },
+  { x: 99, y: 91, value: 1180 },
+  { x: 137.5, y: 71, value: 1640 },
+  { x: 176, y: 47, value: 3124 },
+  { x: 214.5, y: 55, value: 2680 },
+  { x: 253, y: 35, value: 3550 },
+  { x: 291.5, y: 19, value: 4352 },
+];
+
+const periods = [
+  { label: "Last 3 Months", count: 3 },
+  { label: "Last 6 Months", count: 6 },
+  { label: "Last 8 Months", count: 8 },
 ];
 
 export default function ShipmentStatistic() {
+  const [activeIndex, setActiveIndex] = useState(4);
+  const [period, setPeriod] = useState(periods[2]);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const visibleStart = chartBars.length - period.count;
+  const activeBar = chartBars[activeIndex];
+  const activeMonth = months[activeIndex];
+  const totalShipments = chartBars
+    .slice(visibleStart)
+    .reduce((total, bar) => total + bar.value, 0);
+
   return (
-    <section className="flex h-full min-h-[259px] min-w-0 flex-col overflow-hidden rounded-[12px] bg-white p-[16px] shadow-card sm:min-h-[320px]">
+    <section className="flex h-full min-h-[259px] min-w-0 flex-col overflow-visible rounded-[12px] bg-white p-[16px] shadow-card sm:min-h-[320px]">
       <div className="flex h-[28px] items-center justify-between">
         <h2
           className="font-medium text-[#2f2f34]"
@@ -40,20 +57,47 @@ export default function ShipmentStatistic() {
         >
           Shipment Statistic
         </h2>
-        <button
-          type="button"
-          className="flex items-center justify-center gap-1 text-[#3f3f44]"
-          style={{
-            width: "89px",
-            height: "28px",
-            borderRadius: "8px",
-            backgroundColor: "#F2F2F3",
-            fontSize: "10px",
-          }}
-        >
-          Last Year
-          <FiChevronDown size={10} />
-        </button>
+        <div className="relative">
+          <button
+            type="button"
+            onClick={() => setMenuOpen((open) => !open)}
+            className="flex items-center justify-center gap-1 text-[#3f3f44]"
+            style={{
+              width: "105px",
+              height: "28px",
+              borderRadius: "8px",
+              backgroundColor: "#F2F2F3",
+              fontSize: "10px",
+            }}
+            aria-expanded={menuOpen}
+            aria-haspopup="listbox"
+          >
+            {period.label}
+            <FiChevronDown className={`transition ${menuOpen ? "rotate-180" : ""}`} size={10} />
+          </button>
+          {menuOpen && (
+            <div className="absolute right-0 top-[32px] z-30 w-[125px] overflow-hidden rounded-lg border border-line bg-white p-1 shadow-float" role="listbox">
+              {periods.map((item) => (
+                <button
+                  key={item.count}
+                  type="button"
+                  onClick={() => {
+                    setPeriod(item);
+                    setActiveIndex(item.count >= 6 ? 4 : chartBars.length - 1);
+                    setMenuOpen(false);
+                  }}
+                  className={`w-full rounded-md px-2.5 py-2 text-left text-[10px] ${
+                    period.count === item.count ? "bg-brand-50 font-medium text-brand-700" : "text-[#555] hover:bg-[#f5f5f6]"
+                  }`}
+                  role="option"
+                  aria-selected={period.count === item.count}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
       <div className="mt-[10px] flex h-[26px] items-center gap-[6px]">
@@ -61,7 +105,7 @@ export default function ShipmentStatistic() {
           className="font-semibold leading-none tracking-[-0.025em] text-[#2d2d31]"
           style={{ fontSize: "26px" }}
         >
-          4,352
+          {totalShipments.toLocaleString()}
         </span>
         <span
           className="inline-flex items-center font-medium text-[#29945f]"
@@ -88,19 +132,20 @@ export default function ShipmentStatistic() {
         <div
           className="absolute z-10 flex flex-col items-center"
           style={{
-            left: "48.59%",
-            top: "-15px",
+            left: `${((activeBar.x + 19.25) / 337) * 100}%`,
+            top: `${Math.max(-15, activeBar.y - 62)}px`,
             width: "63px",
             height: "51px",
             borderRadius: "9px",
             backgroundColor: "#E3DDFF",
+            transform: "translateX(-50%)",
           }}
         >
           <span className="mt-[7px] text-[9px] leading-none text-[#85858c]">
-            May 2030
+            {activeMonth.label} 2030
           </span>
           <strong className="mt-[7px] text-[13px] font-semibold leading-none text-[#333338]">
-            3,124
+            {activeBar.value.toLocaleString()}
           </strong>
         </div>
 
@@ -113,12 +158,13 @@ export default function ShipmentStatistic() {
         >
           <defs>
             <linearGradient id="shipmentGrayArea" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#d8d8da" stopOpacity="0.52" />
-              <stop offset="100%" stopColor="#f5f5f6" stopOpacity="0.12" />
+              <stop offset="0%" stopColor="#9f9fa4" stopOpacity="0.78" />
+              <stop offset="48%" stopColor="#d7d7da" stopOpacity="0.5" />
+              <stop offset="100%" stopColor="#f5f5f6" stopOpacity="0.18" />
             </linearGradient>
             <linearGradient id="shipmentMayArea" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#8066F0" />
-              <stop offset="100%" stopColor="#d9d1ff" stopOpacity="0.2" />
+              <stop offset="0%" stopColor="#8066F0" stopOpacity="1" />
+              <stop offset="100%" stopColor="#e8e3ff" stopOpacity="0.38" />
             </linearGradient>
           </defs>
 
@@ -145,15 +191,30 @@ export default function ShipmentStatistic() {
             </g>
           ))}
 
-          {chartBars.map((bar, index) => (
-            <g key={index}>
+          {chartBars.map((bar, index) => {
+            if (index < visibleStart) return null;
+            const highlighted = activeIndex === index;
+
+            return (
+            <g
+              key={index}
+              onMouseEnter={() => setActiveIndex(index)}
+              onClick={() => setActiveIndex(index)}
+              className="cursor-pointer"
+              role="button"
+              tabIndex="0"
+              aria-label={`${months[index].label}: ${bar.value.toLocaleString()} shipments`}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") setActiveIndex(index);
+              }}
+            >
               <rect
                 x={bar.x}
                 y={bar.y}
                 width="38.5"
                 height={115 - bar.y}
                 fill={
-                  bar.highlighted
+                  highlighted
                     ? "url(#shipmentMayArea)"
                     : "url(#shipmentGrayArea)"
                 }
@@ -163,22 +224,23 @@ export default function ShipmentStatistic() {
                 y1={bar.y}
                 x2={bar.x + 38.5}
                 y2={bar.y}
-                stroke={bar.highlighted ? "#8066F0" : "#29292d"}
+                stroke={highlighted ? "#8066F0" : "#29292d"}
                 strokeWidth="1.6"
               />
+              <rect x={bar.x} y="5" width="38.5" height="110" fill="transparent" />
             </g>
-          ))}
+          )})}
 
           <circle
-            cx="195.25"
-            cy="47"
+            cx={activeBar.x + 19.25}
+            cy={activeBar.y}
             r="5.5"
             fill="#29292d"
             stroke="white"
             strokeWidth="1.6"
           />
 
-          {months.map((month) => (
+          {months.map((month, index) => index >= visibleStart && (
             <text
               key={`${month.label}-${month.x}`}
               x={month.x}
