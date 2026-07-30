@@ -26,7 +26,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="-mx-3 w-[412px] min-w-[412px] max-w-[412px] md:mx-0 md:w-auto md:min-w-0 md:max-w-none">
+    <div className="w-full min-w-0">
       <header className="mb-4 hidden items-center justify-between gap-4 md:flex">
         <div>
           <p className="text-[10px] text-[#9b9ba1]">Hello John!</p>
@@ -42,7 +42,7 @@ export default function Dashboard() {
         </div>
       </header>
 
-      <div className="-mt-4 mb-4 w-full bg-white px-4 pb-4 pt-[15px] md:hidden">
+      <div className="mb-4 w-full md:hidden">
         <div className="flex w-full gap-2">
           <SearchInput
             value=""
@@ -55,7 +55,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="grid w-full grid-cols-1 gap-4 px-4 md:grid-cols-6 md:gap-5 md:px-0 xl:grid-cols-4">
+      <div className="grid w-full min-w-0 grid-cols-1 gap-4 md:grid-cols-6 md:gap-5 xl:grid-cols-4">
         {dashboardMetrics.map((metric) => (
           <div key={metric.label} className="md:col-span-2 xl:col-span-1">
             <MetricCard

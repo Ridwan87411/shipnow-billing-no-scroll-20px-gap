@@ -17,7 +17,6 @@ const titleForPath = (pathname) => {
 export default function AppShell() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const location = useLocation();
-  const isDashboard = location.pathname.startsWith("/dashboard");
 
   return (
     <div className="min-h-screen bg-canvas">
@@ -51,9 +50,7 @@ export default function AppShell() {
           <Suspense fallback={<PageSkeleton />}>
             <Outlet />
           </Suspense>
-          <div className={isDashboard ? "-mx-3 w-[412px] min-w-[412px] max-w-[412px] md:mx-0 md:w-auto md:min-w-0 md:max-w-none" : ""}>
-            <Footer />
-          </div>
+          <Footer />
         </div>
       </div>
     </div>

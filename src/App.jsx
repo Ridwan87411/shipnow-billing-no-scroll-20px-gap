@@ -15,6 +15,8 @@ const Drivers = lazy(() => import("./pages/Drivers/Drivers"));
 const Fleets = lazy(() => import("./pages/Fleets/Fleets"));
 const Tracking = lazy(() => import("./pages/Tracking/Tracking"));
 const Analytics = lazy(() => import("./pages/Analytics/Analytics"));
+const Messages = lazy(() => import("./pages/Messages/Messages"));
+const Notifications = lazy(() => import("./pages/Notifications/Notifications"));
 const Placeholder = lazy(() => import("./pages/Placeholder/Placeholder"));
 
 function ProtectedLayout() {
@@ -45,8 +47,8 @@ export default function App() {
         <Route path="/tracking" element={<Tracking />} />
         <Route path="/fleets" element={<Fleets />} />
         <Route path="/drivers" element={<Drivers />} />
-        <Route path="/message" element={<Placeholder />} />
-        <Route path="/notification" element={<Placeholder />} />
+        <Route path="/message" element={<Messages />} />
+        <Route path="/notification" element={<Notifications />} />
         <Route path="/settings" element={<Placeholder />} />
       </Route>
 
