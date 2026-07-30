@@ -4,21 +4,21 @@ import { shipmentTypes } from "../../data/dashboard";
 
 export default function ShipmentType() {
   return (
-    <section className="h-full min-w-0 rounded-[12px] border border-[#ececef] bg-white p-5 shadow-card">
-      <div className="flex h-[38px] items-start justify-between">
-        <h2 className="text-[20px] font-medium leading-[38px] text-[#303034]">
+    <section className="h-[415px] min-w-0 overflow-hidden rounded-[12px] border border-[#ececef] bg-white p-4 shadow-card sm:h-full sm:p-5">
+      <div className="flex h-7 items-start justify-between sm:h-[38px]">
+        <h2 className="text-[16px] font-medium leading-7 text-[#303034] sm:text-[20px] sm:leading-[38px]">
           Shipment Type
         </h2>
         <button
           type="button"
-          className="flex h-[38px] w-[38px] items-center justify-center rounded-[10px] bg-[#f2f2f3] text-[#77777d]"
+          className="flex h-7 w-7 items-center justify-center rounded-[8px] bg-[#f2f2f3] text-[#77777d] sm:h-[38px] sm:w-[38px] sm:rounded-[10px]"
           aria-label="Shipment Type options"
         >
           <FiMoreHorizontal size={18} />
         </button>
       </div>
 
-      <div className="relative mx-auto mt-4 h-[260px] w-full max-w-[290px]">
+      <div className="relative mx-auto mt-3 h-[232px] w-full max-w-[250px] sm:mt-4 sm:h-[260px] sm:max-w-[290px]">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
@@ -47,11 +47,11 @@ export default function ShipmentType() {
         </div>
       </div>
 
-      <div className="mt-4 grid grid-cols-2 gap-x-5 gap-y-5">
+      <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-3 sm:mt-4 sm:gap-x-5 sm:gap-y-5">
         {shipmentTypes.map((item) => (
-          <div key={item.name} className="flex min-w-0 items-center gap-3">
+          <div key={item.name} className="flex min-w-0 items-center gap-2 sm:gap-3">
             <span
-              className="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-[8px] text-[13px] font-semibold"
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[7px] text-[11px] font-semibold sm:h-[42px] sm:w-[42px] sm:rounded-[8px] sm:text-[13px]"
               style={{
                 backgroundColor: item.color,
                 color: item.name === "Rail Freight" ? "#333338" : "#FFFFFF",

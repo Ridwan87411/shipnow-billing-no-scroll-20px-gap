@@ -26,7 +26,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="-mx-3 md:mx-0">
+    <div className="-mx-3 w-[412px] min-w-[412px] max-w-[412px] md:mx-0 md:w-auto md:min-w-0 md:max-w-none">
       <header className="mb-4 hidden items-center justify-between gap-4 md:flex">
         <div>
           <p className="text-[10px] text-[#9b9ba1]">Hello John!</p>
@@ -47,7 +47,7 @@ export default function Dashboard() {
           <SearchInput
             value=""
             onChange={() => {}}
-            className="h-[41px] flex-1 rounded-[10px] border-0 bg-[#f1f1f2] [&_input]:text-[14px] [&_svg]:text-[19px] [&_svg]:text-[#29292d]"
+            className="h-[41px] flex-1 rounded-[10px] border-0 bg-[#f1f1f2] [&_input]:text-[14px] [&_svg]:text-[18px] [&_svg]:text-[#29292d]"
           />
           <button className="flex h-[41px] w-10 shrink-0 items-center justify-center rounded-[10px] bg-[#262628] text-white">
             <FiPlus size={24} />
@@ -55,43 +55,50 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="grid w-full gap-4 sm:grid-cols-2 sm:gap-5 md:grid-cols-6 xl:grid-cols-4">
+      <div className="grid w-full grid-cols-1 gap-4 px-4 md:grid-cols-6 md:gap-5 md:px-0 xl:grid-cols-4">
         {dashboardMetrics.map((metric) => (
           <div key={metric.label} className="md:col-span-2 xl:col-span-1">
-            <MetricCard {...metric} />
+            <MetricCard
+              {...metric}
+              mobileChange={
+                metric.label === "Delivery Performance" || metric.label === "Revenue"
+                  ? "+8.7%"
+                  : undefined
+              }
+            />
           </div>
         ))}
-        <div className="sm:hidden">
+        <div className="md:hidden">
           <ShipmentStatistic />
         </div>
-        <div className="sm:hidden">
+        <div className="md:hidden">
           <ProfitSummary />
         </div>
-        <div className="sm:col-span-2 md:order-2 md:col-span-3 xl:order-none xl:col-span-1 xl:row-span-2">
+        <div className="md:order-2 md:col-span-3 xl:order-none xl:col-span-1 xl:row-span-2">
           <ShipmentType />
         </div>
 
-        <div className="hidden sm:col-span-2 sm:block md:order-1 md:col-span-3 xl:order-none xl:col-span-1">
+        <div className="hidden md:order-1 md:col-span-3 md:block xl:order-none xl:col-span-1">
           <ShipmentStatistic />
         </div>
-        <div className="hidden sm:col-span-2 sm:block md:order-1 md:col-span-3 xl:order-none xl:col-span-2">
+        <div className="hidden md:order-1 md:col-span-3 md:block xl:order-none xl:col-span-2">
           <ProfitSummary />
         </div>
 
-        <div className="sm:col-span-2 md:order-2 md:col-span-3 xl:order-none xl:col-span-1">
+        <div className="md:order-2 md:col-span-3 xl:order-none xl:col-span-1">
           <ProductCategories />
         </div>
-        <div className="sm:col-span-2 md:order-3 md:col-span-6 xl:order-none xl:col-span-2">
+        <div className="md:order-3 md:col-span-6 xl:order-none xl:col-span-2">
           <TrackingPanel />
         </div>
-        <div className="sm:col-span-2 md:order-4 md:col-span-3 xl:order-none xl:col-span-1">
+        <div className="md:order-4 md:col-span-3 xl:order-none xl:col-span-1">
           <AlertsPanel />
         </div>
 
-        <div className="sm:col-span-2 md:order-5 md:col-span-6 xl:order-none xl:col-span-3">
+        <div className="md:order-5 md:col-span-6 xl:order-none xl:col-span-3">
           <RecentShipments />
         </div>
-        <div className="sm:col-span-2 md:order-4 md:col-span-3 xl:order-none xl:col-span-1">
+        <div className="md:order-4 md:col-span-3 xl:order-none xl:col-span-1">
           <RecentActivity />
         </div>
       </div>

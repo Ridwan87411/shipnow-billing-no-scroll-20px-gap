@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { FiMoreHorizontal, FiSearch } from "react-icons/fi";
 import { shipmentRecords } from "../../data/shipments";
 
@@ -43,8 +43,8 @@ function Checkbox({ label, checked, onChange }) {
       <span
         className="flex h-[14px] w-[14px] items-center justify-center rounded-[4px] border transition-colors"
         style={{
-          backgroundColor: checked ? "#8062F2" : "#A4A3A3",
-          borderColor: checked ? "#8062F2" : "#A4A3A3",
+          backgroundColor: checked ? "#8062F2" : "#F1F1F2",
+          borderColor: checked ? "#8062F2" : "#DEDEE1",
         }}
       >
         {checked && (
@@ -59,6 +59,8 @@ function Checkbox({ label, checked, onChange }) {
 
 export default function RecentShipments() {
   const [selected, setSelected] = useState(() => new Set());
+  const scrollRef = useRef(null);
+  const dragRef = useRef({ active: false, x: 0, left: 0 });
   const rows = shipmentRecords.slice(0, 5).map((item) => ({
     ...item,
     ...rowOverrides[item.id],
@@ -78,10 +80,33 @@ export default function RecentShipments() {
     });
   };
 
+  const startDrag = (event) => {
+    if (event.target.closest("button, input, label, a")) return;
+    if (event.pointerType === "mouse" && !event.target.closest("tbody")) return;
+    const scroller = scrollRef.current;
+    if (!scroller) return;
+    dragRef.current = {
+      active: true,
+      x: event.clientX,
+      left: scroller.scrollLeft,
+    };
+    scroller.setPointerCapture?.(event.pointerId);
+  };
+
+  const moveDrag = (event) => {
+    if (!dragRef.current.active || !scrollRef.current) return;
+    scrollRef.current.scrollLeft =
+      dragRef.current.left - (event.clientX - dragRef.current.x);
+  };
+
+  const stopDrag = () => {
+    dragRef.current.active = false;
+  };
+
   return (
-    <section className="card min-w-0 p-4">
+    <section className="card h-[414px] min-w-0 overflow-hidden p-4 sm:h-auto">
       <div className="mb-4 flex items-center justify-between gap-4">
-        <h2 className="text-[13px] font-semibold text-[#29292d] sm:text-[16px]">
+        <h2 className="text-[16px] font-semibold text-[#29292d]">
           <span className="sm:hidden">Recent Shipment</span>
           <span className="hidden sm:inline">Recent Shipments</span>
         </h2>
@@ -112,7 +137,17 @@ export default function RecentShipments() {
         </div>
       </div>
 
-      <div className="overflow-x-auto [scrollbar-width:none] md:overflow-visible [&::-webkit-scrollbar]:hidden">
+      <div
+        ref={scrollRef}
+        className="scrollbar-thin cursor-grab touch-pan-x overflow-x-auto overscroll-x-contain active:cursor-grabbing md:cursor-auto md:overflow-visible"
+        onPointerDown={startDrag}
+        onPointerMove={moveDrag}
+        onPointerUp={stopDrag}
+        onPointerCancel={stopDrag}
+        role="region"
+        aria-label="Scrollable recent shipments table"
+        tabIndex={0}
+      >
         <table className="w-full min-w-[790px] table-fixed text-left md:min-w-0">
           <colgroup>
             <col className="w-[17%]" />
@@ -123,7 +158,7 @@ export default function RecentShipments() {
             <col className="w-[17%]" />
           </colgroup>
           <thead>
-            <tr className="h-[38px] bg-[#e3ddff] text-[8px] font-normal text-[#303034] sm:h-[42px] sm:text-[11px]">
+            <tr className="h-[42px] bg-[#e3ddff] text-[8px] font-normal text-[#303034] sm:text-[11px]">
               <th className="rounded-l-[9px] px-3 font-normal">
                 <span className="flex items-center gap-3">
                   <Checkbox

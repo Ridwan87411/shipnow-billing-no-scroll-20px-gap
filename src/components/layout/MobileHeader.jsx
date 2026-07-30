@@ -9,7 +9,7 @@ export default function MobileHeader({ title, onMenu, back = false }) {
   return (
     <header
       className={`sticky top-0 z-30 flex items-center justify-between border-b border-line bg-white/95 px-4 backdrop-blur md:hidden ${
-        isDashboard ? "relative h-[58px] w-full" : "h-[52px] w-full"
+        isDashboard ? "relative h-[58px] w-[412px] min-w-[412px] max-w-[412px]" : "h-[52px] w-full"
       }`}
     >
       {back ? (
@@ -23,7 +23,7 @@ export default function MobileHeader({ title, onMenu, back = false }) {
       ) : (
         <Logo
           compact
-          className={isDashboard ? "absolute left-4 [&>span]:h-[26px] [&>span]:w-[26px]" : ""}
+          className={isDashboard ? "absolute left-6 [&>span]:h-[26px] [&>span]:w-[26px]" : ""}
         />
       )}
 
@@ -40,11 +40,11 @@ export default function MobileHeader({ title, onMenu, back = false }) {
       <button
         onClick={onMenu}
         className={`flex h-9 w-9 shrink-0 items-center justify-end text-[#77777d] ${
-          isDashboard ? "absolute right-4" : ""
+          isDashboard ? "absolute right-6" : ""
         }`}
         aria-label="Open navigation"
       >
-        <FiMenu size={isDashboard ? 20 : 17} />
+        <FiMenu size={isDashboard ? 18 : 17} />
       </button>
     </header>
   );

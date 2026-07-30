@@ -70,9 +70,9 @@ const activityItems = [
 
 export default function RecentActivity() {
   return (
-    <section className="card h-full min-w-0 p-4">
+    <section className="card h-[443px] min-w-0 overflow-hidden p-4 sm:h-full">
       <div className="flex h-7 items-center justify-between">
-        <h2 className="text-[18px] font-semibold text-[#29292d]">Recent Activity</h2>
+        <h2 className="text-[16px] font-semibold text-[#29292d] xl:text-[18px]">Recent Activity</h2>
         <button
           type="button"
           className="flex h-7 w-7 items-center justify-center rounded-[7px] bg-[#f1f1f2] text-[#74747a]"
@@ -105,10 +105,10 @@ export default function RecentActivity() {
                 <span className="h-5 w-5">{item.icon}</span>
               </span>
               <div className="relative z-10 min-w-0 flex-1 pt-[1px]">
-                <p className="text-[16px] leading-[1.35] text-[#303034] [&_span]:font-medium [&_span]:text-[#1766d3]">
+                <p className="text-[14px] leading-[1.35] text-[#303034] xl:text-[16px] [&_span]:font-medium [&_span]:text-[#1766d3]">
                   {item.content}
                 </p>
-                <p className="mt-2 text-[13px] leading-none text-[#8b8b91]">{item.time}</p>
+                <p className="mt-2 text-[10px] leading-none text-[#8b8b91] xl:text-[13px]">{item.time}</p>
               </div>
             </div>
           ))}

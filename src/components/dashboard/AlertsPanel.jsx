@@ -36,7 +36,7 @@ function AlertIcon({ type }) {
 
 export default function AlertsPanel() {
   return (
-    <section className="card h-full min-w-0 p-4">
+    <section className="card h-[430px] min-w-0 overflow-hidden p-4 sm:h-full">
       <div className="flex items-center justify-between">
         <h2 className="text-[16px] font-medium text-[#29292d]">Shipment Alerts</h2>
         <button
@@ -57,7 +57,7 @@ export default function AlertsPanel() {
         {alertSummary.map(([value, ...lines]) => (
           <div
             key={value}
-            className="flex h-[100px] min-w-0 flex-col items-center justify-center rounded-[9px] bg-[#e3ddff] text-center"
+            className="flex h-[90px] min-w-0 flex-col items-center justify-center rounded-[9px] bg-[#e3ddff] text-center sm:h-[100px]"
           >
             <p className="text-[23px] font-semibold leading-none text-[#2d2d31]">{value}</p>
             <p className="mt-3 text-[11px] leading-[1.18] text-[#34343a]">

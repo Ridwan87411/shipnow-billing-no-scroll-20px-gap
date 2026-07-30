@@ -15,7 +15,7 @@ export default function ProfitSummary() {
   return (
     <SectionCard
       title="Profit Summary"
-      className="h-full min-h-[259px] sm:min-h-[320px]"
+      className="h-full min-h-[259px] sm:min-h-[320px] [&_h2]:text-[16px]"
       action={
         <button
           type="button"

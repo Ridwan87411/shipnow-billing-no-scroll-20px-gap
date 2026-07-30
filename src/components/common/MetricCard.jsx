@@ -12,21 +12,22 @@ export default function MetricCard({
   suffix,
   change,
   note,
+  mobileChange,
   compact = false,
 }) {
   return (
     <div
-      className={`card relative min-w-0 ${
-        compact ? "p-4" : "h-[94px] px-4 py-[15px] md:h-[115px]"
+      className={`card relative w-full min-w-0 ${
+        compact ? "p-4" : "h-[72px] px-4 py-[10px] md:h-[115px] md:py-[15px]"
       }`}
     >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <p className="truncate text-[11px] text-[#77777f] md:text-[10px]">{label}</p>
-          <div className="mt-[7px] flex items-end gap-1.5">
+          <p className="truncate text-[10px] text-[#77777f]">{label}</p>
+          <div className="mt-1 flex items-end gap-1.5 md:mt-[7px]">
             <p
               className={`font-semibold tracking-[-0.035em] text-ink ${
-                compact ? "text-[24px]" : "text-[28px] md:text-[27px]"
+                compact ? "text-[24px]" : "text-[24px] md:text-[27px]"
               }`}
             >
               {value}
@@ -40,7 +41,7 @@ export default function MetricCard({
           className={`flex shrink-0 items-center justify-center bg-[#856DF3] text-white ${
             compact
               ? "h-10 w-10 rounded-lg"
-              : "mt-0 h-[35px] w-[35px] rounded-[7px] md:mt-[17px] md:h-[39px] md:w-[39px]"
+              : "mt-0 h-8 w-8 rounded-[7px] md:mt-[17px] md:h-[39px] md:w-[39px]"
           }`}
         >
           {iconByLabel[label] ? (
@@ -56,7 +57,7 @@ export default function MetricCard({
         </span>
       </div>
       {(change || note) && (
-        <div className="absolute bottom-[19px] right-4 mt-0 flex items-center gap-1.5 text-[8px] md:static md:mt-[8px]">
+        <div className="absolute bottom-3 right-4 mt-0 flex items-center gap-1.5 text-[8px] md:static md:mt-[8px]">
           {change && (
             <>
               <span
@@ -68,7 +69,16 @@ export default function MetricCard({
               >
                 <FiChevronUp size={9} strokeWidth={2.2} />
               </span>
-              <span className="font-medium text-[#38ad73]">{change}</span>
+              <span className="font-medium text-[#38ad73]">
+                {mobileChange ? (
+                  <>
+                    <span className="md:hidden">{mobileChange}</span>
+                    <span className="hidden md:inline">{change}</span>
+                  </>
+                ) : (
+                  change
+                )}
+              </span>
             </>
           )}
           {note && <span className="text-[#929299]">{note}</span>}
