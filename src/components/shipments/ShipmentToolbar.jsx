@@ -2,6 +2,7 @@ import {
   FiCalendar,
   FiChevronDown,
   FiFilter,
+  FiList,
   FiPlus,
   FiSliders,
   FiSearch,
@@ -13,6 +14,7 @@ export default function ShipmentToolbar({
   query,
   setQuery,
   grid = false,
+  onViewChange,
   onAdd,
 }) {
   const statuses = grid
@@ -57,6 +59,17 @@ export default function ShipmentToolbar({
         </button>
         {onAdd && (
           <button
+            type="button"
+            onClick={onViewChange}
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[8px] text-[#66666c] md:hidden"
+            aria-label="Table view"
+          >
+            <FiList />
+          </button>
+        )}
+        {onAdd && (
+          <button
+            type="button"
             onClick={onAdd}
             className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[8px] bg-[#29292b] text-white md:hidden"
             aria-label="New shipment"

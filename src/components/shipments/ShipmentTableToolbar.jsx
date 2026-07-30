@@ -2,6 +2,7 @@ import {
   FiCalendar,
   FiChevronDown,
   FiFilter,
+  FiGrid,
   FiPlus,
   FiSearch,
   FiSliders,
@@ -14,6 +15,7 @@ export default function ShipmentTableToolbar({
   setStatus,
   query,
   setQuery,
+  onViewChange,
   onAdd,
 }) {
   return (
@@ -80,6 +82,15 @@ export default function ShipmentTableToolbar({
             <FiCalendar size={13} />
             This Month
             <FiChevronDown size={11} />
+          </button>
+
+          <button
+            type="button"
+            onClick={onViewChange}
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[7px] bg-[#f4f4f5] text-[#66666c] md:hidden"
+            aria-label="Grid view"
+          >
+            <FiGrid size={15} />
           </button>
 
           <button

@@ -169,6 +169,7 @@ export default function Shipments() {
             setStatus={setStatus}
             query={query}
             setQuery={setQuery}
+            onViewChange={() => setView("grid")}
             onAdd={() => navigate("/shipments/new")}
           />
         ) : (
@@ -178,6 +179,7 @@ export default function Shipments() {
             query={query}
             setQuery={setQuery}
             grid
+            onViewChange={() => setView("table")}
             onAdd={() => navigate("/shipments/new")}
           />
         )}
