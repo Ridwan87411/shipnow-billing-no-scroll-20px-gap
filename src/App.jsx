@@ -7,6 +7,7 @@ import Shipments from "./pages/Shipments/Shipments";
 import CreateShipment from "./pages/CreateShipment/CreateShipment";
 import Invoices from "./pages/Invoices/Invoices";
 import Warehouse from "./pages/Warehouse/Warehouse";
+import Calendar from "./pages/Calendar/Calendar";
 import Placeholder from "./pages/Placeholder/Placeholder";
 
 function ProtectedLayout() {
@@ -32,7 +33,7 @@ export default function App() {
         <Route path="/warehouse" element={<Warehouse />} />
 
         <Route path="/analytics" element={<Placeholder />} />
-        <Route path="/calendar" element={<Placeholder />} />
+        <Route path="/calendar" element={<Calendar />} />
         <Route path="/tracking" element={<Placeholder />} />
         <Route path="/fleets" element={<Placeholder />} />
         <Route path="/drivers" element={<Placeholder />} />

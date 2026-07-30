@@ -298,7 +298,7 @@ export default function Login() {
           <div className="mt-7">
             <label
               htmlFor="login-email"
-              className="block text-[9px] font-medium text-[#4f4f54]"
+              className="block text-[13px] font-medium text-[#4f4f54]"
             >
               Email Address
             </label>
@@ -319,14 +319,14 @@ export default function Login() {
                   form: undefined,
                 }));
               }}
-              placeholder="Enter a valid email address"
+              placeholder="Demo Email : sadib@shipnow.com"
               className={`
                 mt-2 h-[39px] w-full
                 rounded-[7px]
                 border
                 bg-[#f6f6f7]
                 px-3.5
-                text-[9px]
+                text-[13px]
                 placeholder:text-[#b3b3b8]
 
                 ${
@@ -338,7 +338,7 @@ export default function Login() {
             />
 
             {errors.email && (
-              <p className="mt-1 text-[8px] text-danger">
+              <p className="mt-1 text-[11px] text-danger">
                 {errors.email}
               </p>
             )}
@@ -348,7 +348,7 @@ export default function Login() {
           <div className="mt-4">
             <label
               htmlFor="login-password"
-              className="block text-[9px] font-medium text-[#4f4f54]"
+              className="block text-[13px] font-medium text-[#4f4f54]"
             >
               Password
             </label>
@@ -370,7 +370,7 @@ export default function Login() {
                     form: undefined,
                   }));
                 }}
-                placeholder="Create a strong password"
+                placeholder="Demo Password :1234"
                 className={`
                   h-[39px] w-full
                   rounded-[7px]
@@ -378,7 +378,7 @@ export default function Login() {
                   bg-[#f6f6f7]
                   px-3.5
                   pr-10
-                  text-[9px]
+                  text-[13px]
                   placeholder:text-[#b3b3b8]
 
                   ${
@@ -410,7 +410,7 @@ export default function Login() {
             </div>
 
             {errors.password && (
-              <p className="mt-1 text-[8px] text-danger">
+              <p className="mt-1 text-[11px] text-danger">
                 {errors.password}
               </p>
             )}
@@ -418,7 +418,7 @@ export default function Login() {
 
           {/* Remember / forgot */}
           <div className="mt-3 flex items-center justify-between">
-            <label className="flex items-center gap-1.5 text-[8px] text-[#77777d]">
+            <label className="flex items-center gap-1.5 text-[12px] text-[#77777d]">
               <input
                 type="checkbox"
                 checked={values.remember}
@@ -436,7 +436,7 @@ export default function Login() {
 
             <a
               href="#"
-              className="text-[8px] font-medium text-brand-600"
+              className="text-[12px] font-medium text-brand-600"
             >
               Forgot Password?
             </a>
@@ -450,7 +450,7 @@ export default function Login() {
                 bg-[#fff2f3]
                 px-3 py-2
                 text-center
-                text-[8px]
+                text-[11px]
                 text-danger
               "
             >
@@ -465,7 +465,7 @@ export default function Login() {
               mt-5 h-[40px] w-full
               rounded-[7px]
               bg-[#272729]
-              text-[10px]
+              text-[14px]
               font-medium
               text-white
               transition
@@ -475,7 +475,7 @@ export default function Login() {
             Login
           </button>
 
-          <p className="mt-4 text-center text-[8px] text-[#98989e]">
+          <p className="mt-4 text-center text-[12px] text-[#98989e]">
             Don&apos;t have an account?{" "}
 
             <a
