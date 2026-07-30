@@ -1,8 +1,21 @@
-# ShipNow Frontend Assignment
+# ShipNow — Logistics Management Dashboard
 
-Responsive ShipNow logistics dashboard implementation using React + Vite + Tailwind CSS.
+## Demo Login Credentials
 
-## Stack
+> **Email:** `sadib@shipnow.com`  
+> **Password:** `1234`
+
+These credentials are for demonstration purposes only.
+
+---
+
+## Project Overview
+
+**ShipNow** is a responsive logistics management dashboard developed as a frontend project. It provides interfaces for managing shipments, invoices, warehouse information, tracking, analytics, fleets, drivers, messages, and notifications.
+
+The application follows the supplied Figma design and supports desktop, tablet, and mobile screen sizes.
+
+## Technologies Used
 
 - React 18
 - Vite
@@ -10,110 +23,203 @@ Responsive ShipNow logistics dashboard implementation using React + Vite + Tailw
 - React Router DOM
 - React Icons
 - Recharts
-- Local mock data only
-- No API, server route, database, or pre-styled component library
+- JavaScript
+- Local mock data
+- Local Storage for the simulated login session
 
-## Demo login
+No backend server, external API, or database is used in this project.
+
+## Main Features
+
+- Responsive login page
+- Form validation
+- Password show/hide functionality
+- Simulated authentication
+- Protected dashboard routes
+- Desktop sidebar
+- Tablet icon sidebar
+- Mobile navigation drawer
+- Dashboard statistics and charts
+- Shipment table view
+- Shipment grid view
+- Shipment searching and filtering
+- Shipment sorting and row selection
+- Pagination and page-size controls
+- Create New Shipment form
+- Invoice and billing management
+- Dynamic invoice details
+- Invoice amount calculation
+- Warehouse management interface
+- Responsive desktop, tablet, and mobile layouts
+
+## Available Pages
+
+- Login
+- Dashboard
+- Analytics
+- Calendar
+- Shipments
+- Create New Shipment
+- Tracking
+- Warehouse
+- Fleets
+- Drivers
+- Invoices & Billing
+- Messages
+- Notifications
+- Settings
+
+## Project Routes
+
+```text
+/login
+/dashboard
+/analytics
+/calendar
+/shipments
+/shipments?view=table
+/shipments?view=grid
+/shipments/new
+/tracking
+/warehouse
+/fleets
+/drivers
+/invoices
+/message
+/notification
+/settings
+```
+
+## Installation
+
+Make sure that Node.js and npm are installed on your computer.
+
+Clone the repository:
+
+```bash
+git clone <your-repository-url>
+```
+
+Open the project directory:
+
+```bash
+cd shipnow-frontend
+```
+
+Install the dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Vite will display a local URL similar to:
+
+```text
+http://localhost:5173/
+```
+
+Open that URL in your browser.
+
+## Production Build
+
+Create a production build:
+
+```bash
+npm run build
+```
+
+Preview the production build:
+
+```bash
+npm run preview
+```
+
+## Login Instructions
+
+Use the following credentials on the login page:
 
 ```text
 Email: sadib@shipnow.com
 Password: 1234
 ```
 
-The app stores a simulated session in `localStorage`.
+After a successful login, the application redirects the user to the dashboard.
 
-## Setup
+The login session is stored in the browser's `localStorage`. Therefore, refreshing or reopening the application may take the user directly to the dashboard.
 
-```bash
-npm install
-npm run dev
+To clear the saved session, open the browser console and run:
+
+```javascript
+localStorage.removeItem("shipnow-session");
+location.reload();
 ```
 
-Vite will normally print:
+## Responsive Design
+
+The application is optimized for the following reference screen sizes:
 
 ```text
-http://localhost:5173
+Desktop: 1440px
+Tablet: 768px
+Mobile: 375px
 ```
 
-Production build:
+The layouts remain fluid between these screen sizes.
 
-```bash
-npm run build
-npm run preview
+## Project Structure
+
+```text
+src/
+├── components/
+│   ├── common/
+│   ├── dashboard/
+│   ├── forms/
+│   ├── invoices/
+│   ├── layout/
+│   ├── shipments/
+│   └── warehouse/
+├── context/
+│   └── AuthContext.jsx
+├── data/
+├── pages/
+│   ├── Analytics/
+│   ├── Calendar/
+│   ├── CreateShipment/
+│   ├── Dashboard/
+│   ├── Drivers/
+│   ├── Fleets/
+│   ├── Invoices/
+│   ├── Login/
+│   ├── Messages/
+│   ├── Notifications/
+│   ├── Shipments/
+│   ├── Tracking/
+│   └── Warehouse/
+├── App.jsx
+├── index.css
+└── main.jsx
 ```
 
-## Routes
+## Important Notes
 
-- `/login`
-- `/dashboard`
-- `/shipments?view=table`
-- `/shipments?view=grid`
-- `/shipments/new`
-- `/invoices`
-- `/warehouse`
+- This project contains frontend functionality only.
+- Authentication is simulated and is not secure for production use.
+- Data is loaded from local mock-data files.
+- The project does not use a database or backend API.
+- The demo credentials must not be used as real production credentials.
+- Do not open `index.html` directly or use VS Code Live Server.
+- Always run the application using `npm run dev`.
 
-Required navigation-only placeholder routes are also included:
-Analytics, Calendar, Tracking, Fleets, Drivers, Message, Notification, Settings.
+## Author
 
-## Screen status
+**Ridwan Jamal Sadib**
 
-| Screen | Status |
-| --- | --- |
-| Login | Complete |
-| Dashboard | Complete |
-| Shipments - Table | Complete |
-| Shipments - Grid | Complete |
-| Create New Shipment | Complete against supplied Figma reference |
-| Invoices & Billing | Complete |
-| Warehouse | Complete from written specification |
+## License
 
-## Functional requirements implemented
-
-- Simulated login session
-- Login validation: required, email format, password length, show/hide password
-- Shared dashboard application shell
-- Desktop full sidebar, tablet icon rail, mobile hamburger drawer
-- Shipments view switcher on a single `/shipments` route
-- Search and status filtering
-- Shipment table sorting and row selection
-- Pagination and page size selection
-- Data-driven Recharts charts
-- Create Shipment validation and clearing errors after correction
-- Invoice row selection updates detail
-- Invoice totals calculated from line items
-- Interactive warehouse floor tabs
-- Responsive internal table scrolling without horizontal page scrolling
-- Semantic labels, alt text, and visible focus states
-
-## Breakpoints
-
-The implementation is designed around the assignment reference widths:
-
-- Desktop reference: 1440px
-- Tablet reference: 768px
-- Mobile reference: 375px
-
-Behaviour between these widths is fluid.
-
-## Design assumptions / known limitations
-
-The supplied visual references clearly show Login, Dashboard, Shipments Table,
-Shipments Grid, and Invoices & Billing at the required breakpoints.
-
-A full desktop/tablet/mobile Figma visual reference is now included for
-**Create New Shipment**, and that screen has been matched to the supplied frame,
-including the deliberately shown validation errors.
-
-A full Figma visual frame for **Warehouse** has not yet been supplied in the current
-project package. Warehouse therefore follows the written assignment requirements and
-reuses the ShipNow design system until that exact frame is available.
-
-## Submission checklist
-
-- [ ] Push to a public GitHub repository
-- [ ] Commit incrementally with descriptive commit messages
-- [ ] Add the live deployment URL here
-- [ ] Deploy to Vercel/Netlify/equivalent
-- [ ] Test the deployed app in a private/incognito browser
-- [ ] Confirm all screen status entries are accurate
-- [ ] Submit both repository and live URL through the required Google Form
+This project was developed for educational and assignment purposes.
