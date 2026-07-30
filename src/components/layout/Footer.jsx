@@ -8,7 +8,7 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="mt-5 flex flex-col items-center gap-4 border-t border-line py-5 text-center text-[9px] text-[#8b8b91] md:flex-row md:justify-between md:gap-3 md:py-4 md:text-left">
+    <footer className="mt-5 flex flex-col items-center gap-4 border-t border-line py-5 text-center text-[12px] text-[#8b8b91] md:flex-row md:justify-between md:gap-3 md:py-4 md:text-left">
       <div className="flex flex-col items-center gap-3 md:flex-row md:gap-5">
         <span className="font-medium text-[#333338]">
           Copyright © 2025 Peterdraw

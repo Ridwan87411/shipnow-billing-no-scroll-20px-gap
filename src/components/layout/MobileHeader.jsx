@@ -4,9 +4,14 @@ import Logo from "../common/Logo";
 
 export default function MobileHeader({ title, onMenu, back = false }) {
   const navigate = useNavigate();
+  const isDashboard = title === "Dashboard";
 
   return (
-    <header className="sticky top-0 z-30 flex h-[52px] items-center justify-between border-b border-line bg-white/95 px-4 backdrop-blur md:hidden">
+    <header
+      className={`sticky top-0 z-30 flex items-center justify-between border-b border-line bg-white/95 px-4 backdrop-blur md:hidden ${
+        isDashboard ? "relative h-[58px] w-full" : "h-[52px] w-full"
+      }`}
+    >
       {back ? (
         <button
           onClick={() => navigate(-1)}
@@ -16,11 +21,16 @@ export default function MobileHeader({ title, onMenu, back = false }) {
           <FiArrowLeft size={17} />
         </button>
       ) : (
-        <Logo compact />
+        <Logo
+          compact
+          className={isDashboard ? "absolute left-4 [&>span]:h-[26px] [&>span]:w-[26px]" : ""}
+        />
       )}
 
       <p
-        className={`min-w-0 flex-1 truncate text-[13px] font-medium text-[#3a3a3e] ${
+        className={`min-w-0 truncate font-medium text-[#3a3a3e] ${
+          isDashboard ? "absolute left-1/2 -translate-x-1/2 text-[16px]" : "flex-1 text-[13px]"
+        } ${
           back ? "text-left" : "text-center"
         }`}
       >
@@ -29,10 +39,12 @@ export default function MobileHeader({ title, onMenu, back = false }) {
 
       <button
         onClick={onMenu}
-        className="flex h-9 w-9 shrink-0 items-center justify-end text-[#77777d]"
+        className={`flex h-9 w-9 shrink-0 items-center justify-end text-[#77777d] ${
+          isDashboard ? "absolute right-4" : ""
+        }`}
         aria-label="Open navigation"
       >
-        <FiMenu size={17} />
+        <FiMenu size={isDashboard ? 20 : 17} />
       </button>
     </header>
   );

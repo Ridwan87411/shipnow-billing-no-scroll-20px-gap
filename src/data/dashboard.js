@@ -41,17 +41,17 @@ export const profitData = [
   { month: "Feb", revenue: 47000, cost: 42000 },
   { month: "Mar", revenue: 56000, cost: 49000 },
   { month: "Apr", revenue: 61000, cost: 53000 },
-  { month: "May", revenue: 67524, cost: 45680 },
+  { month: "May", revenue: 87524, cost: 45680 },
   { month: "Jun", revenue: 72000, cost: 61000 },
   { month: "Jul", revenue: 69000, cost: 58000 },
   { month: "Aug", revenue: 76000, cost: 63000 },
 ];
 
 export const shipmentTypes = [
-  { name: "Road Freight", value: 1150, percent: 46, color: "#8068ef" },
-  { name: "Ocean Freight", value: 425, percent: 17, color: "#666666" },
-  { name: "Air Freight", value: 700, percent: 28, color: "#242424" },
-  { name: "Rail Freight", value: 225, percent: 9, color: "#c8c8c8" },
+  { name: "Road Freight", value: 1150, percent: 46, color: "#8068EF" },
+  { name: "Ocean Freight", value: 425, percent: 17, color: "#777779" },
+  { name: "Air Freight", value: 700, percent: 28, color: "#252525" },
+  { name: "Rail Freight", value: 225, percent: 9, color: "#E4E4E6" },
 ];
 
 export const productCategories = [
@@ -67,25 +67,26 @@ export const alerts = [
   {
     id: 1,
     type: "Customs Clearance Delay",
-    shipment: "#SH9473921",
+    shipment: "#SH8743921",
     detail: "Ocean Freight · Mar 20",
   },
   {
     id: 2,
     type: "Incorrect Address Provided",
-    shipment: "#SH9758810",
+    shipment: "#SH8725810",
+    displayDetail: "Road Freight • Mar 20",
     detail: "Ocean Freight · Mar 20",
   },
   {
     id: 3,
     type: "Weather-Related Hold",
-    shipment: "#SH9700861",
+    shipment: "#SH8790043",
     detail: "Air Freight · Mar 19",
   },
   {
     id: 4,
     type: "Incorrect Address Provided",
-    shipment: "#SH8771063",
+    shipment: "#SH8716654",
     detail: "Rail Freight · Mar 18",
   },
 ];

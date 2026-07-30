@@ -1,4 +1,8 @@
-import { FiArrowDown, FiArrowUp, FiMoreHorizontal } from "react-icons/fi";
+import {
+  FiChevronDown,
+  FiChevronUp,
+  FiMoreHorizontal,
+} from "react-icons/fi";
 
 const iconByLabel = {
   "Total Shipments": "/assets/shipments/total.png",
@@ -34,13 +38,15 @@ export default function ShipmentSummaryCard({ item }) {
           </p>
         </div>
 
-        <button
-          type="button"
-          className="flex h-5 w-5 shrink-0 items-center justify-center rounded-[5px] bg-[#f5f5f6] text-[#a2a2a8]"
-          aria-label={`${item.label} options`}
-        >
-          <FiMoreHorizontal size={12} />
-        </button>
+        {item.label !== "Total Shipments" && (
+          <button
+            type="button"
+            className="flex h-5 w-5 shrink-0 items-center justify-center rounded-[5px] text-[#a2a2a8]"
+            aria-label={`${item.label} options`}
+          >
+            <FiMoreHorizontal size={12} />
+          </button>
+        )}
       </div>
 
       <div className="mt-3 flex items-end justify-between gap-2 md:mt-3.5">
@@ -49,15 +55,27 @@ export default function ShipmentSummaryCard({ item }) {
         </p>
 
         <div className="mb-0.5 flex min-w-0 items-start gap-1 text-[7px] leading-[1.25] text-[#99999f] sm:text-[8px]">
-          <span
-            className={`mt-[1px] flex h-[15px] w-[15px] shrink-0 items-center justify-center rounded-full ${
-              isDown
-                ? "bg-[#f1efff] text-brand-600"
-                : "bg-[#e9fbf2] text-[#39b97a]"
-            }`}
-          >
-            {isDown ? <FiArrowDown size={8} /> : <FiArrowUp size={8} />}
-          </span>
+          {isDown ? (
+            <span
+              className="mt-[1px] flex h-[17px] w-[17px] shrink-0 items-center justify-center bg-[#f1efff] text-[#5f43ce]"
+              style={{
+                clipPath:
+                  "polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0 50%)",
+              }}
+            >
+              <FiChevronDown size={10} strokeWidth={2.2} />
+            </span>
+          ) : (
+            <span
+              className="mt-[1px] flex h-[17px] w-[17px] shrink-0 items-center justify-center bg-[#dff8e9] text-[#218d59]"
+              style={{
+                clipPath:
+                  "polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0 50%)",
+              }}
+            >
+              <FiChevronUp size={10} strokeWidth={2.2} />
+            </span>
+          )}
           <span className="whitespace-nowrap">
             {isDown ? "Down" : "Up by"}{" "}
             <strong
@@ -69,8 +87,7 @@ export default function ShipmentSummaryCard({ item }) {
             >
               {trend.percent}
             </strong>
-            <span className="hidden sm:inline"> {trend.suffix}</span>
-            <span className="block sm:hidden">{trend.suffix}</span>
+            <span className="block">{trend.suffix}</span>
           </span>
         </div>
       </div>

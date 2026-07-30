@@ -39,13 +39,13 @@ export default function AppShell() {
         </div>
       )}
 
-      <div className="min-h-screen md:pl-[68px] lg:pl-[228px]">
+      <div className="min-h-screen md:pl-[68px] lg:pl-[240px]">
         <MobileHeader
           title={titleForPath(location.pathname)}
           onMenu={() => setDrawerOpen(true)}
           back={location.pathname.startsWith("/shipments/new")}
         />
-        <div className="mx-auto w-full max-w-[1600px] px-3 pb-3 pt-4 sm:px-4 md:px-5 lg:px-6 lg:pt-5">
+        <div className="w-full px-3 pb-3 pt-4 sm:px-4 md:px-5 lg:px-5 lg:pt-5">
           <Outlet />
           <Footer />
         </div>

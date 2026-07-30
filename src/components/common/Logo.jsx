@@ -1,4 +1,9 @@
-export default function Logo({ light = false, compact = false, className = "" }) {
+export default function Logo({
+  light = false,
+  compact = false,
+  darkWord = false,
+  className = "",
+}) {
   const logoColor = light ? "#FFFFFF" : "#856DF3";
 
   return (
@@ -21,8 +26,10 @@ export default function Logo({ light = false, compact = false, className = "" })
 
       {!compact && (
         <span
-          className="text-[20px] font-black italic tracking-[-0.04em]"
-          style={{ color: logoColor }}
+          className={`font-black italic tracking-[-0.04em] ${
+            darkWord ? "text-[22px]" : "text-[20px]"
+          }`}
+          style={{ color: darkWord && !light ? "#29292b" : logoColor }}
         >
           SHIPNOW
         </span>
